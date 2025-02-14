@@ -1,0 +1,4 @@
+Registro de Writes - Leader
+Term 0: Prueba 1
+1	Ejemplo 1
+1	Ejemploooooo

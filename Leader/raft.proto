@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+service RaftService {
+    rpc Write(WriteRequest) returns (WriteResponse);
+    rpc Read(ReadRequest) returns (ReadResponse);
+    rpc Replicate(ReplicateRequest) returns (ReplicateResponse);
+    rpc Vote(VoteRequest) returns (VoteResponse);
+}
+
+message WriteRequest {
+    string data = 1;
+}
+
+message WriteResponse {
+    bool success = 1;
+}
+
+message ReadRequest {}
+
+message ReadResponse {
+    string data = 1;
+}
+
+message ReplicateRequest {
+    string data = 1;
+}
+
+message ReplicateResponse {
+    bool success = 1;
+}
+
+message VoteRequest {
+    int32 term = 1;
+}
+
+message VoteResponse {
+    bool voteGranted = 1;
+}
