@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+service ProxyService {
+    // Solicitud para escribir datos (será redirigido al líder)
+    rpc Write(WriteRequest) returns (WriteResponse);
+
+    // Solicitud para leer datos (será redirigido a uno de los followers)
+    rpc Read(ReadRequest) returns (ReadResponse);
+}
+
+message WriteRequest {
+    string data = 1;  // Datos a escribir en la base de datos
+}
+
+message WriteResponse {
+    bool success = 1; // Confirmación de éxito
+}
+
+message ReadRequest {}
+
+message ReadResponse {
+    string data = 1;  // Datos leídos desde uno de los followers
+}
