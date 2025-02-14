@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+service RaftService {
+    // Servicio para replicar entradas en los followers y el líder
+    rpc AppendEntries(AppendEntriesRequest) returns (AppendEntriesResponse);
+
+    // Servicio para leer el estado de un follower
+    rpc GetState(GetStateRequest) returns (GetStateResponse);
+
+    // Servicio para solicitar votos (para elección de nuevo líder)
+    rpc RequestVote(RequestVoteRequest) returns (RequestVoteResponse);
+}
+
+message AppendEntriesRequest {
+    string leader_id = 1;
+    int32 term = 2;
+    repeated string entries = 3; // Entradas (logs) a replicar
+}
+
+message AppendEntriesResponse {
+    int32 term = 1;
+    bool success = 2;
+}
+
+message GetStateRequest {}
+
+message GetStateResponse {
+    string state = 1;
+}
+
+message RequestVoteRequest {
+    string candidate_id = 1;
+    int32 term = 2;
+}
+
+message RequestVoteResponse {
+    int32 term = 1;
+    bool vote_granted = 2;
+}

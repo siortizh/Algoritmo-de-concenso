@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package proxy;
+
+service ProxyService {
+    rpc Write(WriteRequest) returns (WriteResponse);
+    rpc Read(ReadRequest) returns (ReadResponse);
+}
+
+message WriteRequest {
+    string data = 1;
+}
+
+message WriteResponse {
+    bool success = 1;
+}
+
+message ReadRequest {}
+
+message ReadResponse {
+    string data = 1;
+}
